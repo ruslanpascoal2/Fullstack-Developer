@@ -2,10 +2,6 @@
 
 Para facilitar o acesso à aplicação, fiz o deploy das 2 APIs Spring e da aplicação Angular no Heroku.
 
-#### Aplicação Cliente Angular
-
-https://ecommerce--web.herokuapp.com/
-
 #### REST API da aplicação
 
   Endpoints para consulta:
@@ -19,8 +15,14 @@ https://ecommerce--web.herokuapp.com/
   - http://ecommerce--api.herokuapp.com/api/order
 
 #### API Cálculo de Frete
+
   Endpoint que retorna o valor de frete:
   - http://frete--api.herokuapp.com/api/shipping/ {{quantidade de itens}}
     - ex: http://frete--api.herokuapp.com/api/shipping/9 => retorno: 78.86
+    
+    
+#### Aplicação Cliente Angular
+
+  https://ecommerce--web.herokuapp.com/
   
  
