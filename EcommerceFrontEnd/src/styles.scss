@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "EuclidCircularB-Regular" !important;
+  background: #f1f1f1;
+  width: 100%;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+@font-face {
+  font-family: "EuclidCircularB-Regular";
+  src: url("./assets/fontes/EuclidCircularB-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "EuclidCircularB-Bold";
+  src: url("./assets/fontes/EuclidCircularB-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "EuclidCircularB-Medium";
+  src: url("./assets/fontes/EuclidCircularB-Medium.otf") format("opentype");
+}
+
+mat-icon {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+.page-title {
+  margin-top: 2rem;
+  font-size: 26px;
+  font-weight: bold;
+  font-family: "EuclidCircularB-Bold";
+}
+
+.card {
+  background: #ffffff;
+  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  margin-top: 1.5rem;
+  width: 100%;
+
+  .card-title {
+    margin: 2rem 0 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: "EuclidCircularB-Bold";
+
+    img {
+      height: 20px;
+      margin-bottom: 0.2rem;
+    }
+
+    span {
+      margin-left: 1rem;
+      font-size: 22.75px;
+      font-weight: bold;
+    }
+  }
+
+  .card-content {
+    margin: 1rem 0 2rem 2rem;
+  }
+
+  .form-error-hint{
+    margin-top: .5rem !important;
+    color: rgb(236, 84, 84);
+    font-size: .8rem;
+  }
+
+
+}

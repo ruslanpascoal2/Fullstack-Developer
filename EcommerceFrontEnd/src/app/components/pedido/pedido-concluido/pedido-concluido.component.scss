@@ -1,0 +1,25 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70%;
+  width: 100%;
+
+  img{
+      height: 60px;
+      margin-bottom: 1rem;
+  }
+
+  .buttons{
+      display: flex;
+      justify-content: space-evenly;
+      width: 25%;
+      margin-top: 2rem;
+
+      #btn-new-order{
+        background: #2dcb70;
+        color: #fff;
+      }
+  }
+}

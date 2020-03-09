@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    .table-container{
+        
+        margin: 3rem;
+        width: 90%;
+        
+    }
+    .card{
+        margin-bottom: 4rem !important;
+    }
+}

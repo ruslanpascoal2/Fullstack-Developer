@@ -1,0 +1,163 @@
+<div class="container">
+
+    <span class="page-title">Novo pedido #{{this.newOrderNumber}}</span>
+
+    <div class="card" id="card-busca-cliente">
+
+        <div class="card-title">
+            <img src="../../../../assets/icones/icone-cliente.png" alt="">
+            <span>Cliente</span>
+        </div>
+
+        <div class="card-content">
+
+            <form id="customer-form" [formGroup]="customerSearchForm" (ngSubmit)="checkout()">
+                <input  matInput formControlName="customerSearchInput" [matAutocomplete]="customerAutoComplete" 
+                    placeholder="Informe um cliente*" type="search" class="form-control" required />
+
+                <mat-autocomplete #customerAutoComplete="matAutocomplete">
+                    <mat-option *ngFor="let customer of (customers | filter:customerSearchForm.value.customerSearchInput)" (click)="onCustomerSelect()"  [value]="customer.name">
+                        {{customer.code | uppercase}} - {{customer.name | titlecase}}
+                    </mat-option>
+                </mat-autocomplete> 
+
+            </form>
+
+            <span *ngIf="showCustomerSearchHint" class="form-error-hint">Selecione um cliente.</span>
+
+        </div>
+
+    </div>
+
+    <div class="card" id="card-cart">
+
+        <div class="card-title">
+            <img src="../../../../assets/icones/icone-carrinho.png" alt="">
+            <span>Carrinho</span>
+        </div>
+
+        <div class="card-content" >
+
+            <form [formGroup]="productSearchForm">
+                <input id="productSearchField" placeholder="Pesquise um produto" formControlName="productSearchInput" type="search"
+                    [matAutocomplete]="productAutoComplete" class="form-control" >
+
+
+
+                <mat-icon type="submit" (click)="addItemToCart()" id="add-button">add_circle_outline</mat-icon>
+
+
+                <mat-autocomplete #productAutoComplete="matAutocomplete">
+                    <mat-option *ngFor="let product of (products | filter:productSearchForm.value.productSearchInput)" [value]="product.name"
+                        (click)="onProductSelect()">
+                        {{product.code | uppercase}} -  {{product.name | titlecase}}
+                    </mat-option>
+                </mat-autocomplete>
+
+
+            </form>
+            <div class="form-error-hint" *ngIf="showProductSearchHint">É necessário adicionar um produto ao carrinho.</div>
+
+
+            <div class="cart" *ngIf="cartLength > 0">
+
+                <div class="cart-section" *ngFor="let item of cart.items">
+                    <mat-divider></mat-divider>
+
+                    <div class="cart-item">
+
+
+                        <div class="cart-item-product-info">
+                            <img src="../../../../assets/img/{{item.product.code}}.png" alt="">
+                            <div class="info">
+
+                                <span class="cart-item-code">{{item.product.code}}</span>
+                                <span class="cart-item-name">{{item.product.name}}</span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="cart-item-price-info">
+                            <div class="info">
+                                <div>
+
+                                    <input class="form-control" id="quantityInput" matInput type="number" min="1"
+                                        step="1" [(ngModel)]="item.quantity"
+                                        (input)="refreshQty(item, $event.target.value)">
+                                    <span id="price1"> x R$ {{item.product.unitPrice | number : '1.2-2'}} </span>
+
+                                </div>
+                                <span id="price2">R$
+                                    {{item.product.unitPrice * quantityField| number : '1.2-2'}}</span>
+                            </div>
+                            <mat-icon id="remove-button" (click)="removeItemFromCart(item)"
+                                fontSet="material-icons-outlined">cancel
+                            </mat-icon>
+                        </div>
+
+                    </div>
+                </div>
+
+             
+            </div>
+
+            <div class="cart-empty" *ngIf="isCartEmpty">
+
+                <img src="../../../../assets/icones/imagem-carrinho-empty-state.png" height="110px" alt="">
+                <span id="cart-empty-h1">Carrinho vazio</span>
+                <span id="cart-empty-h2">Nenhum produto foi inserido</span>
+
+            </div>
+            <mat-divider *ngIf="!isCartEmpty"></mat-divider>
+        </div>
+
+
+
+    </div>
+
+    <div class="card" id="card-total">
+
+        <div class="card-title">
+            <img src="../../../../assets/icones/icone-total.png" alt="">
+            <span>Total</span>
+        </div>
+
+        <div class="card-content">
+
+            <div class="checkout">
+
+                <div class="checkout-item">
+                    <span class="item-name">Itens</span>
+                    <span>R$ {{totalItemsPrice | number: '1.2-2'}}</span>
+                </div>
+
+                <div class="checkout-item">
+                    <span class="item-name">Frete</span>
+                    <span>R$ {{totalShipping | number: '1.2-2'}} </span>
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <div class="checkout-item">
+                    <span class="item-name">Total</span>
+                    <span>R$ {{ totalCartPrice | number: '1.2-2'}}</span>
+                </div>
+
+
+
+
+            </div>
+
+            <div class="buttons">
+
+                <button mat-flat-button (click)="checkout()" type="submit" form="customer-form"> Finalizar pedido</button>
+                <button mat-stroked-button color="white">Limpar Carrinho</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
